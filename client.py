@@ -20,7 +20,8 @@ def receive():
                 client.send(nickname.encode('ascii'))
             else:
                 print(message)
-        except:
+        except Exception as e:
+            print(f"Error: {e}")
             print("An error occurred!")
             client.close()
             break

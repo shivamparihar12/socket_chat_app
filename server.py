@@ -15,6 +15,7 @@ nicknames = []
 
 
 def broadcast(message):
+    print(f"Broadcasting message: {message}")
     for client in clients:
         client.send(message)
 
@@ -23,8 +24,10 @@ def handle_client(client):
     while True:
         try:
             message = client.recv(1024)
+            print(f"Received message: {message}")
             broadcast(message)
-        except:
+        except Exception as e:
+            print(f"Error: {e}")
             index = clients.index(client)
             clients.remove(client)
             client.close()
